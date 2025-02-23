@@ -1,0 +1,45 @@
+{
+  "name": "@amj7/lucide-patch-nativescript-vue",
+  "version": "1.0.0",
+  "description": "Patches lucide-vue-next to be used in NativeScript Vue3 via @nativescript-community/ui-svg and @vue/server-renderer",
+  "scripts": {
+    "postinstall": "patch-package"
+  },
+  "files": [
+    "patches",
+    "nativescript.webpack.js"
+  ],
+  "nativescript": {
+    "platforms": {
+      "ios": "6.0.0",
+      "android": "6.0.0"
+    }
+  },
+  "keywords": [
+    "Lucide",
+    "Vue",
+    "Feather",
+    "Icons",
+    "Icon",
+    "SVG",
+    "Feather Icons",
+    "Fontawesome",
+    "Font Awesome",
+    "nativescript"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "lucide-vue-next": "^0.475.0",
+    "patch-package": "^8.0.0"
+  },
+  "peerDependencies": {
+    "@nativescript-community/ui-canvas": "^4.6.39",
+    "@nativescript-community/ui-svg": "^0.2.11",
+    "@vue/server-renderer": "^3.5.13"
+  },
+  "author": "ArthurMJ96",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
