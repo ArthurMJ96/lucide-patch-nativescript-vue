@@ -1,0 +1,46 @@
+diff --git a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
+index 0678861..f60f3a2 100644
+--- a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
++++ b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
+@@ -5,18 +5,31 @@
+  * See the LICENSE file in the root directory of this source tree.
+  */
+ 
+-import { h } from 'vue';
++import { renderToString } from '@vue/server-renderer'
++import { h, ref, createApp, defineComponent, onBeforeMount } from 'vue';
+ import Icon from './Icon.js';
+ 
+-const createLucideIcon = (iconName, iconNode) => (props, { slots }) => h(
+-  Icon,
+-  {
+-    ...props,
+-    iconNode,
+-    name: iconName
+-  },
+-  slots
+-);
++const createLucideIcon = (iconName, iconNode) => defineComponent((props, { slots }) => {
++  const svgHtml = ref(null)
++  onBeforeMount(() => {
++    const app = createApp(h(
++      Icon,
++      {
++        ...props,
++        iconNode,
++        name: iconName
++      },
++      slots
++    ))
++    renderToString(app).then((html) => {
++      svgHtml.value = html
++    })
++  })
++
++  return () => svgHtml.value ? h("SVGView", { src: svgHtml.value, height: props.size, width: props.size }) : null;
++}, {
++  props: ['size', 'color', 'strokeWidth', 'absoluteStrokeWidth', 'defaultClass']
++});
+ 
+ export { createLucideIcon as default };
+ //# sourceMappingURL=createLucideIcon.js.map
