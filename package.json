@@ -33,13 +33,13 @@
     "patch-package": "^8.0.0"
   },
   "peerDependencies": {
-    "@nativescript-community/ui-canvas": "^4.6.39",
-    "@nativescript-community/ui-svg": "^0.2.11",
-    "@vue/server-renderer": "^3.5.13"
+    "@nativescript-community/ui-canvas": ">=4.6.39",
+    "@nativescript-community/ui-svg": ">=0.2.11",
+    "@vue/server-renderer": ">=3.5.13"
   },
   "author": "ArthurMJ96",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ArthurMJ96/lucide-patch-nativescript-vue.git"
   }
 }
