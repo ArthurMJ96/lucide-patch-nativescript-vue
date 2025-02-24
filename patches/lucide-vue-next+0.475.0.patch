@@ -1,5 +1,5 @@
 diff --git a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
-index 0678861..f60f3a2 100644
+index 0678861..0354cff 100644
 --- a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
 +++ b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
 @@ -5,18 +5,31 @@
@@ -8,7 +8,7 @@ index 0678861..f60f3a2 100644
  
 -import { h } from 'vue';
 +import { renderToString } from '@vue/server-renderer'
-+import { h, ref, createApp, defineComponent, onBeforeMount } from 'vue';
++import { h, ref, watchEffect, createApp, defineComponent } from 'vue';
  import Icon from './Icon.js';
  
 -const createLucideIcon = (iconName, iconNode) => (props, { slots }) => h(
@@ -22,7 +22,7 @@ index 0678861..f60f3a2 100644
 -);
 +const createLucideIcon = (iconName, iconNode) => defineComponent((props, { slots }) => {
 +  const svgHtml = ref(null)
-+  onBeforeMount(() => {
++  watchEffect(() => {
 +    const app = createApp(h(
 +      Icon,
 +      {
