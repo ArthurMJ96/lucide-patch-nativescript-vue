@@ -5,7 +5,7 @@ Patches `lucide-vue-next` to be used in NativeScript Vue 3 via `@nativescript-co
 This package addresses compatibility issues between `lucide-vue-next` and NativeScript Vue 3 by:
 
 - Applying a patch (`lucide-vue-next+0.475.0.patch`) to your project during the `postinstall` script.
-- Providing a `nativescript.webpack.js` in the plugin that overrides imports of "vue" within `@vue/server-renderer` to point to your project's Vue instance.
+- Providing a `nativescript.webpack.js` in the plugin that overrides imports of "vue" within `@vue/server-renderer` to point back to original vue.
 - Enabling tree-shaking for `lucide-vue-next` icons in your NativeScript Vue 3 application.
 
 [StackBlitz Example](https://stackblitz.com/edit/nativescript-vue3-lucide-vue-next-icons-patch?file=src%2Fcomponents%2FHome.vue)
