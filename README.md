@@ -52,6 +52,20 @@ import { Camera } from "lucide-vue-next";
   <Camera color="red" :size="32" />
 </template>
 ```
+```vue
+// Inherited css color supported! (v1.0.7)
+// Examples:
+<template>
+  <Camera class="text-black dark:text-white" />
+</template>
+
+<template>
+  <Page class="text-foreground">
+    ...
+    <Camera />
+  </Page>
+</template>
+```
 
 ### Props
 

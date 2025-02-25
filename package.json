@@ -1,6 +1,6 @@
 {
   "name": "@amj7/lucide-patch-nativescript-vue",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Patches lucide-vue-next to be used in NativeScript Vue3 via @nativescript-community/ui-svg and @vue/server-renderer",
   "scripts": {
     "postinstall": "node ./patch-apply.js || exit 0"
