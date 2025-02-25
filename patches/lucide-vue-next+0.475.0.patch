@@ -1,8 +1,8 @@
 diff --git a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
-index 0678861..0354cff 100644
+index 0678861..31eb11e 100644
 --- a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
 +++ b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
-@@ -5,18 +5,31 @@
+@@ -5,18 +5,55 @@
   * See the LICENSE file in the root directory of this source tree.
   */
  
@@ -21,23 +21,47 @@ index 0678861..0354cff 100644
 -  slots
 -);
 +const createLucideIcon = (iconName, iconNode) => defineComponent((props, { slots }) => {
-+  const svgHtml = ref(null)
++  const svgHtml = ref(null);
++  const cssColor = ref('');
++  
 +  watchEffect(() => {
++    const color = props.color || cssColor.value || undefined;
 +    const app = createApp(h(
 +      Icon,
 +      {
 +        ...props,
 +        iconNode,
-+        name: iconName
++        name: iconName,
++        color
 +      },
 +      slots
-+    ))
++    ));
 +    renderToString(app).then((html) => {
 +      svgHtml.value = html
-+    })
-+  })
++    });
++  });
 +
-+  return () => svgHtml.value ? h("SVGView", { src: svgHtml.value, height: props.size, width: props.size }) : null;
++  function onCssColorChange(args) {
++    cssColor.value = args?.value?.hex;
++  }
++
++  function onLoaded(args) {
++    const view = args.object;
++    view?.style.addEventListener('colorChange', onCssColorChange);
++    cssColor.value = view?.style?.color?.hex;
++  }
++
++  function onUnloaded(args) {
++    args?.object?.style.removeEventListener('colorChange', onCssColorChange);
++  }
++
++  return () => svgHtml.value ? h("SVGView", {
++    src: svgHtml.value,
++    height: props.size,
++    width: props.size,
++    onUnloaded,
++    onLoaded,
++  }) : null;
 +}, {
 +  props: ['size', 'color', 'strokeWidth', 'absoluteStrokeWidth', 'defaultClass']
 +});
