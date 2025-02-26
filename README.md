@@ -52,9 +52,9 @@ import { Camera } from "lucide-vue-next";
   <Camera color="red" :size="32" />
 </template>
 ```
+
 ```vue
-// Inherited css color supported! (v1.0.7)
-// Examples:
+// Inherited css color supported! (v1.0.7) // Examples:
 <template>
   <Camera class="text-black dark:text-white" />
 </template>
@@ -118,6 +118,24 @@ import { Camera } from "lucide-vue-next";
       return webpack.resolveConfig();
     };
     ```
+
+- **`UnhandledSchemeError: Reading from "node:stream" is not handled`**:
+
+  - If you're trying to use `stream-browserify` in your project, you might need to patch `@vue/server-renderer/dist/server-renderer.cjs.js` using [`npx patch-package`](https://www.npmjs.com/package/patch-package) or [`bun patch`](https://bun.sh/docs/install/patch):
+
+    ```diff
+    - const stream = new (require("node:stream")).Readable({ read() {
+    + const stream = new (require("stream-browserify")).Readable({ read() {
+    ```
+
+    <details>
+    <summary>Bun tip</summary>
+
+    If using Bun, there's a [known bug](https://github.com/oven-sh/bun/issues/12090) that breaks bun patch with @scoped packages. So you'll need to use quotes around the package name and fix the file .patch filename manually to @vue+server-renderer@3.5.13.patch once done.
+
+    </details>
+
+---
 
 ---
 
