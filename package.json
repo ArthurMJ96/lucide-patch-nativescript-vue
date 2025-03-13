@@ -1,6 +1,6 @@
 {
   "name": "@amj7/lucide-patch-nativescript-vue",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Patches lucide-vue-next to be used in NativeScript Vue3 via @nativescript-community/ui-svg and @vue/server-renderer",
   "scripts": {
     "postinstall": "node ./patch-apply.js || exit 0"
@@ -26,7 +26,8 @@
     "Feather Icons",
     "Fontawesome",
     "Font Awesome",
-    "nativescript"
+    "nativescript",
+    "NativeScript"
   ],
   "license": "MIT",
   "dependencies": {
