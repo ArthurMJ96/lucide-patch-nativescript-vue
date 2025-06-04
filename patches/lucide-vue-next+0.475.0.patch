@@ -1,8 +1,8 @@
 diff --git a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
-index 0678861..31eb11e 100644
+index 0678861..b359b1e 100644
 --- a/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
 +++ b/node_modules/lucide-vue-next/dist/esm/createLucideIcon.js
-@@ -5,18 +5,55 @@
+@@ -5,18 +5,57 @@
   * See the LICENSE file in the root directory of this source tree.
   */
  
@@ -26,13 +26,15 @@ index 0678861..31eb11e 100644
 +  
 +  watchEffect(() => {
 +    const color = props.color || cssColor.value || undefined;
++    const fill = props.fill === 'currentcolor' ? cssColor.value : props.fill || 'none';
 +    const app = createApp(h(
 +      Icon,
 +      {
 +        ...props,
 +        iconNode,
 +        name: iconName,
-+        color
++        color,
++        fill
 +      },
 +      slots
 +    ));
@@ -63,7 +65,7 @@ index 0678861..31eb11e 100644
 +    onLoaded,
 +  }) : null;
 +}, {
-+  props: ['size', 'color', 'strokeWidth', 'absoluteStrokeWidth', 'defaultClass']
++  props: ['size', 'color', 'strokeWidth', 'absoluteStrokeWidth', 'defaultClass', 'fill']
 +});
  
  export { createLucideIcon as default };
